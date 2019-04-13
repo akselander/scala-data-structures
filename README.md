@@ -4,3 +4,4 @@
 
 * Double Linked List
 * Rooted Tree
+* HashTable using chain
