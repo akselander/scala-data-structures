@@ -1,4 +1,4 @@
-package main.scala.DoubleLinkedList
+package DoubleLinkedList
 
 class DoubleLinkedList {
   private var head: Option[ListNode] = None

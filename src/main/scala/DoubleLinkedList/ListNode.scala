@@ -1,4 +1,4 @@
-package main.scala.DoubleLinkedList
+package DoubleLinkedList
 
 class ListNode(nodeKey: String) {
   val key: String = nodeKey

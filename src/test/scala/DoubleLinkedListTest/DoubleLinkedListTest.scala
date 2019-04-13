@@ -1,14 +1,15 @@
-package DoubleLinkedList
+package DoubleLinkedListTest
 
-import main.scala.DoubleLinkedList.{DoubleLinkedList, ListNode}
+import DoubleLinkedList.{DoubleLinkedList, ListNode}
 import org.scalatest.FlatSpec
 
 class DoubleLinkedListTest extends FlatSpec {
 
-  "Insert" should "insert new node at the element" in {
+  "Insert" should "insert new node at the head" in {
     val doubleLinkedList: DoubleLinkedList = new DoubleLinkedList()
     doubleLinkedList.insert(new ListNode("A"))
-    assert(doubleLinkedList.toString === "Node: A")
+    doubleLinkedList.insert(new ListNode("B"))
+    assert(doubleLinkedList.toString === "Node: B => Node: A")
   }
 
   "Search" should "return node with provided key" in {
