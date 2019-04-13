@@ -27,10 +27,12 @@ class TreeTest extends FlatSpec {
     val rootLeaf: Leaf = new Leaf("A")
     val leaf: Leaf = new Leaf("B")
     val leaf2: Leaf = new Leaf("C")
-    val response: String = "Leaf: A\nLeaf: B Leaf: C\n"
+    val response1: String = "Tree is empty"
+    assert(tree.toString === response1)
+    val response2: String = "Leaf: A\nLeaf: B Leaf: C\n"
     tree.appendRoot(rootLeaf)
     tree.appendLeafToParent(leaf, rootLeaf)
     tree.appendLeafToParent(leaf2, rootLeaf)
-    assert(tree.toString === response)
+    assert(tree.toString === response2)
   }
 }
