@@ -1,3 +1,6 @@
 ### Scala Data Structures
 
-Here I write standard data structures in Scala.
+## Data structures
+
+* Double Linked List
+* Rooted Tree
