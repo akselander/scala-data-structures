@@ -5,8 +5,8 @@ class DoubleLinkedList {
 
   def insert(newNode: ListNode) : Unit = {
     newNode.next = head
-    if (head.isDefined) head.get.prev = Option.apply(newNode)
-    head = Option.apply(newNode)
+    if (head.isDefined) head.get.prev = Option(newNode)
+    head = Option(newNode)
     newNode.prev = None
   }
 

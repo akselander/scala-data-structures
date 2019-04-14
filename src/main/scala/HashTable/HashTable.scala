@@ -12,7 +12,7 @@ class HashTable {
     var chain: ListBuffer[HashEntry] = if(table(index).isEmpty) ListBuffer() else table(index).get
     chain = chain.filter(_.key != key)
     chain += entry
-    table(index) = Option.apply(chain)
+    table(index) = Option(chain)
     index
   }
 

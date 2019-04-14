@@ -3,11 +3,13 @@ package RootedTreeTest
 import RootedTree.{Leaf, Tree}
 import org.scalatest.FlatSpec
 
-class TreeTest extends FlatSpec {
+class RootedTreeTest extends FlatSpec {
 
   "Append Root" should "append leaf to the root" in {
     val tree: Tree = new Tree
-    tree.appendRoot(new Leaf("A"))
+    val leaf: Leaf = new Leaf("A")
+    tree.appendRoot(leaf)
+    assert(tree.getRoot === leaf)
   }
 
   "Append Leaf to Parent" should "append leaf to the parent" in {
