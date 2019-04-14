@@ -29,7 +29,7 @@ class BSTreeTest extends FlatSpec with BeforeAndAfterEach{
   }
 
   "Inorder Walk" should "Print Subtree Root between subtrees" in {
-    tree.inorderTreeWalk(Option(tree.getRoot))
+    assert(tree.inorderTreeWalk(Option(tree.getRoot)) === "567")
   }
 
   "Tree Search" should "find Leaf by key" in {
@@ -50,6 +50,11 @@ class BSTreeTest extends FlatSpec with BeforeAndAfterEach{
 
   "Successor" should "find leafs successsor" in {
     assert(tree.successor(leaf1) === Option(tree.getRoot))
+  }
+
+  "Delete" should "delete node and replace it with one of the child" in {
+    tree.delete(rootLeaf)
+    assert(tree.getRoot.key === 7)
   }
 
 }

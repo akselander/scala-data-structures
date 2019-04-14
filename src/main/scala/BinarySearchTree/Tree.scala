@@ -9,12 +9,14 @@ class Tree {
     root.getOrElse(throw new NoSuchElementException("There's no root defined"))
   }
 
-  def inorderTreeWalk(leaf: Option[Leaf]): Unit = {
+  def inorderTreeWalk(leaf: Option[Leaf]): String = {
+    val response = new StringBuilder
     if(leaf.isDefined) {
-      inorderTreeWalk(leaf.get.leftChild)
-      print(leaf.get.key)
-      inorderTreeWalk(leaf.get.rightChild)
+      response.append(inorderTreeWalk(leaf.get.leftChild))
+      response.append(leaf.get.key.toString)
+      response.append(inorderTreeWalk(leaf.get.rightChild))
     }
+    response.toString
   }
 
   def treeSearch(leaf: Option[Leaf], key: Int) : Option[Leaf] = {
@@ -70,5 +72,29 @@ class Tree {
     if(parentLeaf.isEmpty) root = Option(leaf) else if(leaf.key < parentLeaf.get.key) parentLeaf.get.leftChild = Option(leaf) else parentLeaf.get.rightChild = Option(leaf)
   }
 
+  def delete(leaf: Leaf) : Unit = {
+    if(leaf.leftChild.isEmpty) transplant(leaf, leaf.rightChild)
+    else if (leaf.rightChild.isEmpty) transplant(leaf, leaf.leftChild)
+    else {
+      val successor = minimum(leaf.rightChild.get).get
+      if(successor.parent.get != leaf) {
+        transplant(successor, successor.rightChild)
+        successor.rightChild = leaf.rightChild
+        successor.rightChild.get.parent = Option(successor)
+      }
+      transplant(leaf, Option(successor))
+      successor.leftChild = leaf.leftChild
+      successor.leftChild.get.parent = Option(successor)
+    }
+  }
+
+  private def transplant(leaf: Leaf, childLeaf: Option[Leaf]) : Unit = {
+    val parentLeaf: Option[Leaf] = leaf.parent
+    if (parentLeaf.isEmpty) root = childLeaf
+    else if (leaf == parentLeaf.get.leftChild.get) parentLeaf.get.leftChild = childLeaf
+    else parentLeaf.get.rightChild = childLeaf
+    if(childLeaf.isDefined) childLeaf.get.parent = parentLeaf
+
+  }
 
 }
